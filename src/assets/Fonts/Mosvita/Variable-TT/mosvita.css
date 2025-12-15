@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "Mosvita";
+  src: url("/src/assets/fonts/Mosvita/Mosvita-VF.ttf") format("truetype");
+  font-weight: 100 900; /* variable font range */
+  font-style: normal;
+  font-display: swap;
+}

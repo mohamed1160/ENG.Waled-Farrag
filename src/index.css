@@ -1,0 +1,42 @@
+/* UI libraries */
+@import "tailwindcss";
+
+@import "./assets/Fonts/Mosvita/Variable-TT/mosvita.css";
+
+
+
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap'); */
+@import "flowbite/src/themes/default";
+
+:root{
+  --primary-color: #1F4FFF;
+  --secondary-1: #A1A1A1;
+  --secondary-2: #636363;
+  --secondary-3: #282828;
+  --bg-color: #000000;
+  --text-color: #FFFFFF;
+}
+
+/* navbar ul hover transitions (border transition) */
+.hover-underline {
+  position: relative;
+  display: inline-block;
+}
+.hover-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #A1A1A1; 
+  transition: width 0.4s ease;
+}
+.hover-underline:hover::after {
+  width: 100%;
+}
+button{
+  cursor: pointer;
+}
