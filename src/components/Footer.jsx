@@ -6,7 +6,7 @@ export default function Footer() {
     
 
     return (
-        <footer className="w-full bg-white px-20 py-24">
+        <footer className="w-full block bg-white  px-25 py-15">
             <div className="max-w-[1400px] mx-auto flex justify-between items-start">
                 {/* Left Block */}
                 <div className="flex flex-col gap-8">

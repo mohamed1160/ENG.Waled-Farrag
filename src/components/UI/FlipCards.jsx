@@ -29,7 +29,7 @@ const StyledWrapper = styled.div`
         border-radius: 4px;
         background: #212121;
         display: flex;
-        gap: 5px;
+        gap: 15px;
         padding: 0.4em;
     }
 
