@@ -10,14 +10,27 @@ export default function Footer() {
     const navigate = useNavigate();
 
     const links = [
-        { name: "Home", path: "/" },
-        { name: "About", path: "/about" },
-        { name: "Work", path: "/work" },
-        { name: "Contact", path: "/contact" },
+        { name: "Home", path: "/", targetId: "homeSection" },
+        { name: "About", path: "/about", targetId: "about" },
+        { name: "Work", path: "/work", targetId: "work" },
+        { name: "Contact", path: "/contact", targetId: "contact" },
     ];
 
     const handleLogin = (password) => {
         console.log("Password entered:", password);
+    };
+
+    const handleLinkClick = (link) => {
+        if (window.innerWidth >= 640) {
+            // Desktop: navigate to page
+            navigate(link.path);
+        } else {
+            // Mobile: scroll to section
+            const section = document.getElementById(link.targetId);
+            if (section) {
+                section.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+        }
     };
 
     return (
@@ -40,7 +53,7 @@ export default function Footer() {
                     <ul className="flex flex-1 justify-center gap-8 items-center">
                         {links.map((link) => (
                             <li key={link.name}>
-                                <button onClick={() => navigate(link.path)} className="text-black text-[15px] hover:text-gray-500 transition">
+                                <button onClick={() => handleLinkClick(link)} className="text-black text-[15px] hover:text-gray-500 transition">
                                     {link.name}
                                 </button>
                             </li>
@@ -86,7 +99,7 @@ export default function Footer() {
                     <ul className="flex gap-3 items-center">
                         {links.map((link) => (
                             <li key={link.name}>
-                                <button onClick={() => navigate(link.path)} className="text-black text-[15px] hover:text-gray-500 transition">
+                                <button onClick={() => handleLinkClick(link)} className="text-black text-[15px] hover:text-gray-500 transition">
                                     {link.name}
                                 </button>
                             </li>

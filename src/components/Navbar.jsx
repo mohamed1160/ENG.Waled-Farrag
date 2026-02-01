@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 import ContactBtn from "./UI/ContactBtn";
 import Logo from "../assets/images/mainLogo.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
     const location = useLocation();
+    // const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
-    const [visible, setVisible] = useState(false); 
+    const [visible, setVisible] = useState(false);
 
     const navLinks = [
         { name: "Home", path: "/", targetId: "home" },
-        { name: "About", path: "/", targetId: "about" },
-        { name: "Work", path: "/", targetId: "work" },
-        { name: "Contact", path: "/", targetId: "contact" },
+        { name: "About", path: "/about", targetId: "about" },
+        { name: "Work", path: "/work", targetId: "work" },
+        { name: "Contact", path: "/contact", targetId: "contact" },
     ];
 
     useEffect(() => {
-       
         const timer = setTimeout(() => setVisible(true), 200);
         return () => clearTimeout(timer);
     }, []);
@@ -26,7 +26,7 @@ export default function Navbar() {
         if (section) {
             section.scrollIntoView({ behavior: "smooth", block: "center" });
         }
-        setMenuOpen(false); 
+        setMenuOpen(false);
     };
 
     return (
@@ -45,19 +45,15 @@ export default function Navbar() {
                         {navLinks.map((link) => {
                             const isActive = location.pathname === link.path;
                             return (
-                                <li key={link.name}>
+                                <li key={link.name} className="relative">
                                     <Link
                                         to={link.path}
-                                        className={`
-                      relative text-[1.1rem] p-2.5 transition-colors duration-300
-                      ${isActive ? "text-white font-semibold" : "text-gray-300"}
-                      after:content-[''] after:absolute after:left-0 after:bottom-0
-                      after:h-[2px] after:bg-white after:w-0
-                      after:transition-all after:duration-300
-                      hover:after:w-full
-                      ${isActive ? "after:w-full" : ""}`}>
+                                        className={`text-[1.1rem] p-2.5 transition-colors duration-300
+                                        ${isActive ? "text-white font-semibold" : "text-gray-300"}`}>
                                         {link.name}
                                     </Link>
+                                    {/* underline فقط للينك الحالي */}
+                                    {isActive && <span className="absolute left-0 bottom-0 h-[2px] w-full bg-white"></span>}
                                 </li>
                             );
                         })}
@@ -77,11 +73,14 @@ export default function Navbar() {
                 {/* Mobile Menu */}
                 {menuOpen && (
                     <div className="absolute top-full left-0 w-full bg-black/90 backdrop-blur-md flex flex-col items-center py-6 gap-6 md:hidden">
-                        {navLinks.map((link) => (
-                            <button key={link.name} onClick={() => handleMobileScroll(link.targetId)} className="text-lg p-2 text-gray-300 hover:text-white transition">
-                                {link.name}
-                            </button>
-                        ))}
+                        {navLinks.map((link) => {
+                            if (link.name === "Home") return null; // تجاهل الهوم
+                            return (
+                                <button key={link.name} onClick={() => handleMobileScroll(link.targetId)} className="text-lg p-2 text-gray-300 hover:text-white transition">
+                                    {link.name}
+                                </button>
+                            );
+                        })}
                         <ContactBtn />
                     </div>
                 )}
