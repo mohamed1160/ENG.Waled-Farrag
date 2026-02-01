@@ -1,6 +1,6 @@
 export default function AboutSection() {
     return (
-        <section className="w-full h-[112vh] bg-black text-white pt-20 px-6 md:px-16">
+        <section id="about" className="w-full h-[112vh] bg-black text-white pt-20 px-6 md:px-16">
             <div className="flex flex-col md:flex-row items-start md:items-start gap-10">
                 
                 <div className="order-1 md:order-2 w-full md:flex-1 h-[60vh] md:h-[80vh] bg-gray-400 rounded-lg">

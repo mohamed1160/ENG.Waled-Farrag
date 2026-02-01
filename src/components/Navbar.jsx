@@ -6,20 +6,28 @@ import { Link, useLocation } from "react-router-dom";
 export default function Navbar() {
     const location = useLocation();
     const [menuOpen, setMenuOpen] = useState(false);
-    const [visible, setVisible] = useState(false); // state للأنيميشن
+    const [visible, setVisible] = useState(false); 
 
     const navLinks = [
-        { name: "Home", path: "/" },
-        { name: "About", path: "/about" },
-        { name: "Work", path: "/work" },
-        { name: "Contact", path: "/contact" },
+        { name: "Home", path: "/", targetId: "home" },
+        { name: "About", path: "/", targetId: "about" },
+        { name: "Work", path: "/", targetId: "work" },
+        { name: "Contact", path: "/", targetId: "contact" },
     ];
 
     useEffect(() => {
-        // بعد 200ms نفعل ظهور الناف بار
+       
         const timer = setTimeout(() => setVisible(true), 200);
         return () => clearTimeout(timer);
     }, []);
+
+    const handleMobileScroll = (targetId) => {
+        const section = document.getElementById(targetId);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        setMenuOpen(false); 
+    };
 
     return (
         <header
@@ -69,21 +77,11 @@ export default function Navbar() {
                 {/* Mobile Menu */}
                 {menuOpen && (
                     <div className="absolute top-full left-0 w-full bg-black/90 backdrop-blur-md flex flex-col items-center py-6 gap-6 md:hidden">
-                        {navLinks.map((link) => {
-                            const isActive = location.pathname === link.path;
-                            return (
-                                <Link
-                                    key={link.name}
-                                    to={link.path}
-                                    onClick={() => setMenuOpen(false)}
-                                    className={`
-                    text-lg p-2 transition-colors duration-300
-                    ${isActive ? "text-white font-semibold" : "text-gray-300"}
-                  `}>
-                                    {link.name}
-                                </Link>
-                            );
-                        })}
+                        {navLinks.map((link) => (
+                            <button key={link.name} onClick={() => handleMobileScroll(link.targetId)} className="text-lg p-2 text-gray-300 hover:text-white transition">
+                                {link.name}
+                            </button>
+                        ))}
                         <ContactBtn />
                     </div>
                 )}

@@ -13,13 +13,12 @@ export default function Homepage() {
             {/* About (Mobile only) */}
             <div className="block md:hidden mb-8">
                 {" "}
-                {/* 32px = 8 * 4px */}
                 <AboutSection />
             </div>
 
             <div className=" hidden md:block mb-16 md:mb-16">
                 {" "}
-                {/* 32px موبايل / 64px ديسكتوب */}
+                
                 <HeroSection />
             </div>
 
