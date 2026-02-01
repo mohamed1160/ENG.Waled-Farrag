@@ -18,7 +18,7 @@ export default function HeroSection() {
                 alt="Hero Banner"
                 className={`absolute inset-0 w-full h-full object-cover object-center z-0
           transition-transform duration-1000 ease-out
-          ${animate ? "translate-y-0" : "-translate-y-full"}`}
+          md:${animate ? "translate-y-0" : "-translate-y-full"}`}
             />
 
             {/* Overlay Content */}
@@ -27,7 +27,7 @@ export default function HeroSection() {
                 <div
                     className={`absolute bottom-4 sm:bottom-6 md:bottom-16
             transition-transform duration-1000 ease-out
-            ${animate ? "translate-x-0" : "-translate-x-full"}`}>
+            md:${animate ? "translate-x-0" : "-translate-x-full"}`}>
                     <img src={copyright} alt="Copyright" className="w-[120px] sm:w-[160px] md:w-[201px] h-auto" />
                 </div>
             </div>
