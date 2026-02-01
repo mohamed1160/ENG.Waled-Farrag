@@ -6,7 +6,7 @@ export default function CraftWithMeSection() {
             <p className="text-xl sm:text-2xl md:text-[36px] font-light w-full sm:w-[90%] md:w-[85%]">
                 Great brands are built with intention. If you’re ready to create one with clarity and strategy, <span className="font-semibold">I’d be glad to help you start.</span>
             </p>
-            <div className="w-full flex justify-end md:justify-start">
+            <div className="w-full flex justify-start md:justify-start">
                 <CraftWithMe />
             </div>
         </section>

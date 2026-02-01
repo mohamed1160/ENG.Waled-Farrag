@@ -7,22 +7,22 @@ export default function WorkSlider() {
         {
             title: "Brand Identity Project",
             description: "A strategic branding project focused on creating a strong and consistent visual identity.",
-            tags: ["Branding", "Visual Identity", "Strategy"],
+            tags: ["Branding",  "Strategy"],
         },
         {
             title: "UI / UX Case Study",
             description: "Designing intuitive user interfaces with a focus on usability and clean interactions.",
-            tags: ["UI Design", "UX", "Research"],
+            tags: ["UI Design", "UX" ],
         },
         {
             title: "Web Design Concept",
             description: "A modern website concept designed to deliver clarity, structure, and visual impact.",
-            tags: ["Web Design", "Layout", "Frontend"],
+            tags: ["Web Design", "Frontend"],
         },
         {
             title: "Mobile App Experience",
             description: "Crafting a seamless mobile app experience that prioritizes user flow and accessibility.",
-            tags: ["Mobile", "App Design", "Prototype"],
+            tags: ["Mobile", "App Design"],
         },
     ];
 

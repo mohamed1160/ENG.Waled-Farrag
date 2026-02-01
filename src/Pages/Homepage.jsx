@@ -17,18 +17,18 @@ export default function Homepage() {
                 <AboutSection />
             </div>
 
-            <div className="mb-16 md:mb-16">
+            <div className=" hidden md:block mb-16 md:mb-16">
                 {" "}
                 {/* 32px موبايل / 64px ديسكتوب */}
                 <HeroSection />
             </div>
 
-            <div className="mb-16 md:mb-16">
+            <div className="hidden md:block  mb-16 md:mb-16">
                 <IntroSection />
             </div>
 
             {/* FlipCards (Mobile - Desktop) */}
-            <section className="w-full px-6 mb-8 md:hidden">
+            <section className="hidden md:block w-full px-6 mb-8 md:hidden">
                 <FlipCards />
             </section>
 
@@ -42,11 +42,11 @@ export default function Homepage() {
                 <WorkSection />
             </div>
 
-            <section className="w-full mt-30 px-16 hidden md:block mb-16">
+            <section className=" w-full mt-30 px-16 hidden md:block mb-16">
                 <FlipCards />
             </section>
 
-            <div className="mb-8">
+            <div className=" mb-8">
                 <CraftWithMeSection />
             </div>
 
