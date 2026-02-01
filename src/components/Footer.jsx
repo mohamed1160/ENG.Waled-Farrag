@@ -1,58 +1,117 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PasswordModal from "./PasswordModal";
 import logo from "../assets/images/darkLogo.png";
 import MailInput from "./UI/MailInput";
 import Social from "./UI/Social";
 
 export default function Footer() {
-    
+    const [modalOpen, setModalOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const links = [
+        { name: "Home", path: "/" },
+        { name: "About", path: "/about" },
+        { name: "Work", path: "/work" },
+        { name: "Contact", path: "/contact" },
+    ];
+
+    const handleLogin = (password) => {
+        console.log("Password entered:", password);
+    };
 
     return (
-        <footer className="w-full block bg-white  px-25 py-15">
-            <div className="max-w-[1400px] mx-auto flex justify-between items-start">
-                {/* Left Block */}
-                <div className="flex flex-col gap-8">
-                    <div className="flex gap-4 items-start">
-                        <img src={logo} className="w-[70px] h-[70px] object-contain" alt="Farrag logo" />
-
-                        <div>
-                            <p className="text-black text-[22px] font-light">Creative solution,</p>
-                            <p className="text-black text-[26px] font-bold">Real Impact</p>
+        <footer className="w-full bg-white px-6 py-8">
+            {/* Desktop Layout */}
+            <div className="max-w-[1400px] mx-auto hidden sm:flex flex-col gap-6">
+                <div className="flex justify-between items-start gap-4">
+                    {/* Left: Logo + Tagline */}
+                    <div className="flex flex-col gap-2 flex-1">
+                        <div className="flex items-center gap-4">
+                            <img src={logo} className="w-[60px] h-[60px] sm:w-[50px] sm:h-[50px] object-contain" alt="Logo" />
+                            <div>
+                                <p className="text-black text-[20px] font-light sm:text-[16px]">Creative solution,</p>
+                                <p className="text-black text-[24px] font-bold sm:text-[18px]">Real Impact</p>
+                            </div>
                         </div>
                     </div>
 
-                    <ul className="flex flex-col gap-2">
-                       
-                            <li >
-                                <button className="text-black text-[15px] hover:text-gray-500 transition">Home</button>
+                    {/* Center: Links */}
+                    <ul className="flex flex-1 justify-center gap-8 items-center">
+                        {links.map((link) => (
+                            <li key={link.name}>
+                                <button onClick={() => navigate(link.path)} className="text-black text-[15px] hover:text-gray-500 transition">
+                                    {link.name}
+                                </button>
                             </li>
-                            <li >
-                                <button className="text-black text-[15px] hover:text-gray-500 transition">About</button>
-                            </li>
-                            <li >
-                                <button className="text-black text-[15px] hover:text-gray-500 transition">Work</button>
-                            </li>
-                            <li >
-                                <button className="text-black text-[15px] hover:text-gray-500 transition">Contact</button>
-                            </li>
-                        
+                        ))}
                     </ul>
+
+                    {/* Right: Mail Input + Social */}
+                    <div className="flex flex-col flex-1 items-end gap-3">
+                        <div className="flex flex-col gap-2">
+                            <p className="text-black text-[20px] font-semibold">Get in touch</p>
+                            <MailInput size="sm" className="w-[250px]" />
+                        </div>
+                        <Social />
+                    </div>
                 </div>
 
-                {/* Right Block */}
-                <div className="flex flex-col gap-6 items-start">
-                    <h3 className="text-[18px] font-semibold text-black">Get in touch</h3>
+                {/* Divider */}
+                <div className="border-t border-gray-600"></div>
 
-                    <MailInput />
+                {/* Bottom: Rights & Privacy */}
+                <div className="flex justify-center items-center gap-5 text-black text-[12px]">
+                    <p>All rights are reserved</p>
+                    <p>Privacy & Policy</p>
+                    <p className="text-[14px] font-bold cursor-pointer hover:text-gray-500" onClick={() => setModalOpen(true)}>
+                        FARRAG ©
+                    </p>
+                </div>
+            </div>
 
-                    <Social />
+            {/* Mobile Layout */}
+            <div className="sm:hidden flex flex-col gap-6">
+                <div className="flex flex-col items-center gap-4">
+                    {/* Logo + Tagline */}
+                    <div className="flex items-center gap-4">
+                        <img src={logo} className="w-[60px] h-[60px] object-contain" alt="Logo" />
+                        <div>
+                            <p className="text-black text-[20px] font-light">Creative solution,</p>
+                            <p className="text-black text-[24px] font-bold">Real Impact</p>
+                        </div>
+                    </div>
 
-                    {/* Bottom text INSIDE right block */}
-                    <div className="flex gap-4 items-center  text-[12px] text-gray-600 pt-4">
-                        <p>All Rights are reserved</p>
+                    {/* Links */}
+                    <ul className="flex gap-3 items-center">
+                        {links.map((link) => (
+                            <li key={link.name}>
+                                <button onClick={() => navigate(link.path)} className="text-black text-[15px] hover:text-gray-500 transition">
+                                    {link.name}
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+
+                    {/* Mail Input + Social */}
+                    <div className="flex flex-col items-center gap-3 w-full">
+                        <MailInput size="sm" className="w-full" />
+                        <Social />
+                    </div>
+
+                    {/* Rights & Privacy */}
+                    <div className="flex flex-col items-center gap-1 text-black text-[12px]">
+                        <p>All rights are reserved</p>
                         <p>Privacy & Policy</p>
-                        <p className=" text-[20px] font-semibold text-black">FARRAG ©</p>
+                        <p className="text-[14px] font-bold cursor-pointer hover:text-gray-500" onClick={() => setModalOpen(true)}>
+                            FARRAG ©
+                        </p>
                     </div>
                 </div>
             </div>
+
+            {/* Password Modal */}
+            <PasswordModal isOpen={modalOpen} onClose={() => setModalOpen(false)} onLogin={handleLogin} />
         </footer>
     );
 }

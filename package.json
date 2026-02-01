@@ -14,13 +14,14 @@
     "axios": "^1.13.2",
     "flowbite": "^4.0.1",
     "formik": "^2.4.9",
+    "gsap": "^3.14.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hot-toast": "^2.6.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.9.6",
     "styled-components": "^6.1.19",
-    "swiper": "^12.0.3",
+    "swiper": "^12.1.0",
     "yup": "^1.7.1"
   },
   "devDependencies": {

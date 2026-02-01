@@ -74,7 +74,7 @@ const StyledWrapper = styled.div`
         transition: all 0.3s;
     }
     .arrow {
-        /* display: none; */
+        
         position: absolute;
         margin-right: 150px;
         transition: all 0.3s;

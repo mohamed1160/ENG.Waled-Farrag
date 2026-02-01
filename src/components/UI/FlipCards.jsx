@@ -1,23 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-const Card = () => {
+const Card = ({ items = ["Card 1", "Card 2", "Card 3", "Card 4"] }) => {
+    const [activeIndex, setActiveIndex] = useState(null);
+
     return (
         <StyledWrapper>
             <div className="card">
-                <p>
-                    <span>HOVER ME</span>
-                </p>
-                <p>
-                    <span>HOVER ME</span>
-                </p>
-                <p>
-                    <span>HOVER ME</span>
-                </p>
-                <p>
-                    <span>HOVER ME</span>
-                </p>
-                
+                {items.map((text, index) => (
+                    <p key={index} className={activeIndex === index ? "active" : ""} onClick={() => setActiveIndex(index === activeIndex ? null : index)}>
+                        <span>{text}</span>
+                    </p>
+                ))}
             </div>
         </StyledWrapper>
     );
@@ -26,44 +20,71 @@ const Card = () => {
 const StyledWrapper = styled.div`
     .card {
         height: 100vh;
-        border-radius: 4px;
-        background: #212121;
         display: flex;
         gap: 15px;
         padding: 0.4em;
     }
 
     .card p {
-        height: 100%;
         flex: 1;
-        overflow: hidden;
-        cursor: pointer;
-        border-radius: 2px;
-        transition: all 0.8s;
-        background: #212121;
-        border: 2px solid #fafafa;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    .card p:hover {
-        flex: 4;
+        border-radius: 6px;
+        overflow: hidden;
+        cursor: pointer;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        background: #212121;
+        transition: flex 0.5s ease;
     }
 
     .card p span {
-        min-width: 14em;
-        padding: 0.5em;
+        display: inline-block;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #fff;
         text-align: center;
         transform: rotate(-90deg);
-        transition: all 0.5s;
-        text-transform: uppercase;
-        color: #fff;
-        letter-spacing: 0.1em;
+        transition: transform 0.5s ease;
+        padding: 0.5em;
+        min-width: 14em;
     }
 
+    .card p.active span,
     .card p:hover span {
-        transform: rotate(0);
+        transform: rotate(0deg);
+    }
+
+    .card p:hover {
+        flex: 4; 
+    }
+
+    /* 📱 Mobile */
+    @media (max-width: 768px) {
+        .card {
+            flex-direction: column; 
+            height: 100vh;
+            gap: 12px;
+        }
+
+        .card p {
+            flex: 1;
+            width: 100%;
+        }
+
+        .card p:hover {
+            flex: 1; 
+        }
+
+        .card p.active {
+            flex: 4; 
+        }
+
+        .card p span {
+            transform: rotate(0);
+            min-width: unset;
+            font-size: 1rem;
+        }
     }
 `;
 

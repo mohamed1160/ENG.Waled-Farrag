@@ -1,4 +1,4 @@
-import CraftWithMeSection from "../components/CraftWithMeSection";
+import CraftWithMeSection from "../components/sections/CraftWithMeSection";
 import Swiper from "../components/UI/Swiper";
 
 
