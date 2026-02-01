@@ -11,7 +11,7 @@ export default function HeroSection() {
     }, []);
 
     return (
-        <section className="relative w-full h-[50vh] sm:h-[70vh] md:h-screen overflow-hidden flex items-center justify-center">
+        <section className="relative w-full h-[50vh] sm:h-[70vh] md:h-screen overflow-hidden flex items-center ">
             {/* Hero Image */}
             <img
                 src={heroBanner}

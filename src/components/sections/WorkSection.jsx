@@ -5,7 +5,7 @@ export default function WorkSection() {
     const sortedProjects = [...projects].sort((a, b) => a.id - b.id);
 
     return (
-        <section className="w-full mt-20 px-16">
+        <section className="w-full px-16">
             {/* Title */}
             <div className="flex flex-col gap-8">
                 <h2 className="text-[24px] font-light px-6 py-4 border border-[#F2F2F23F] w-fit">Selected Work</h2>

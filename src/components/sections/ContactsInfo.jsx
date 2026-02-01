@@ -3,7 +3,7 @@ import Social from "../UI/Social";
 
 export default function Contact() {
     return (
-        <div id="contact" className="container mb-10 flex flex-col justify-center items-center bg-[#090909] rounded-[2rem] p-4 sm:p-6 md:p-8 lg:p-10 text-white">
+        <div id="contact" className="container  flex flex-col justify-center items-center bg-[#090909] rounded-[2rem] p-4 sm:p-6 md:p-8 lg:p-10 text-white">
             
             <div className="contact-container text-center my-5 sm:my-6 md:my-8 lg:my-10">
                 <h2 className="text-[20px] sm:text-[24px] md:text-[32px] lg:text-[40px] xl:text-[52px] font-[600] w-3/4 mx-auto">Let's build something amazing together</h2>

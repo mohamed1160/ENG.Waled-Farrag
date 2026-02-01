@@ -7,18 +7,18 @@ import MainLoader from './components/MainLoader';
 
 
 export default function App() {
-      const [isLoading, setIsLoading] = useState(true);
+    //   const [isLoading, setIsLoading] = useState(true);
 
-      useEffect(() => {
-          // محاكاة جلب البيانات أو initial setup
-          const timer = setTimeout(() => {
-              setIsLoading(false); // بعد ما البيانات تتحمل نخفي اللودر
-          }, 6000); // مثال: 2 ثانية
+    //   useEffect(() => {
+    //       // محاكاة جلب البيانات أو initial setup
+    //       const timer = setTimeout(() => {
+    //           setIsLoading(false); // بعد ما البيانات تتحمل نخفي اللودر
+    //       }, 6000); // مثال: 2 ثانية
 
-          return () => clearTimeout(timer);
-      }, []);
+    //       return () => clearTimeout(timer);
+    //   }, []);
 
-      if (isLoading) return <MainLoader />;
+    //   if (isLoading) return <MainLoader />;
     return (
         <>
             <BrowserRouter>

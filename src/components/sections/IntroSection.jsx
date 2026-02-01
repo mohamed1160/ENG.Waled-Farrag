@@ -2,7 +2,7 @@ import workPreviewBanner from "../../assets/images/workPreviewBanner.png";
 
 export default function IntroSection() {
     return (
-        <section className="w-full flex flex-col gap-12 sm:gap-16 px-4 sm:px-8 md:px-16 mt-20">
+        <section className="w-full flex flex-col gap-12 sm:gap-16 px-4 sm:px-8 md:px-16 ">
             {/* Main Text */}
             <h2 className="text-xl sm:text-2xl md:text-[36px] font-light w-full sm:w-[90%] md:w-[85%]">
                 I help businesses build meaningful brands through strategic thinking and intentional design. Blending strategy with creativity to craft identities that speak, guide, and inspire.

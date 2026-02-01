@@ -27,7 +27,7 @@ export default function WorkSlider() {
     ];
 
     return (
-        <section className="w-full bg-black py-20">
+        <section className="w-full bg-black ">
             <div className="max-w-7xl mx-auto px-4 md:px-10">
                 <Swiper
                     modules={[Autoplay]}
