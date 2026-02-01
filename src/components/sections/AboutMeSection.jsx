@@ -10,8 +10,8 @@ export default function AboutSection() {
                 
                 <div className="order-2 md:order-1 flex-1 flex flex-col sm:justify-between min-h-[80vh]">
                     <div>
-                        <h2 className="sm:text-[48px] text-[32px] font-semibold mb-4">About me</h2>
-                        <p className="font-medium text-[var(--secondary-2)] sm:text-[24px] text-[16px] mb-6">
+                        <h2 className="sm:text-[48px] text-[26px] font-semibold mb-4">About me</h2>
+                        <p className="font-light text-[var(--secondary-1)] sm:text-[24px] text-[16px] mb-6">
                             I'm a brand designer who believes that strong design starts long before the visuals. My work is driven by strategy—understanding the brand's core, its audience, and the
                             experience it aims to create.
                         </p>
