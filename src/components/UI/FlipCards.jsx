@@ -18,73 +18,65 @@ const Card = ({ items = ["Card 1", "Card 2", "Card 3", "Card 4"] }) => {
 };
 
 const StyledWrapper = styled.div`
-    .card {
-        height: 100vh;
-        display: flex;
-        gap: 15px;
-        padding: 0.4em;
-    }
+    /* Hidden by default */
+    display: none;
 
-    .card p {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 6px;
-        overflow: hidden;
-        cursor: pointer;
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        background: #212121;
-        transition: flex 0.5s ease;
-    }
+    @media (min-width: 1024px) {
+        /* Show only on desktop */
+        display: block;
 
-    .card p span {
-        display: inline-block;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: #fff;
-        text-align: center;
-        transform: rotate(-90deg);
-        transition: transform 0.5s ease;
-        padding: 0.5em;
-        min-width: 14em;
-    }
-
-    .card p.active span,
-    .card p:hover span {
-        transform: rotate(0deg);
-    }
-
-    .card p:hover {
-        flex: 4; 
-    }
-
-    /*  Mobile */
-    @media (max-width: 768px) {
         .card {
-            flex-direction: column; 
             height: 100vh;
-            gap: 12px;
+            display: flex;
+            gap: 15px;
+            padding: 0.4em;
         }
 
         .card p {
             flex: 1;
-            width: 100%;
-        }
-
-        .card p:hover {
-            flex: 1; 
-        }
-
-        .card p.active {
-            flex: 4; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: #212121;
+            transition: flex 0.5s ease;
         }
 
         .card p span {
-            transform: rotate(0);
-            min-width: unset;
-            font-size: 1rem;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #fff;
+            text-align: center;
+            transform: rotate(-90deg);
+            transition: transform 0.5s ease;
+            padding: 0.5em;
+            min-width: 14em;
         }
+
+        .card p.active span,
+        .card p:hover span {
+            transform: rotate(0deg);
+        }
+
+        .card p:hover {
+            flex: 4;
+        }
+    }
+
+    /* Mobile & Tablet */
+    @media (max-width: 1023px) {
+        .card {
+            display: none; /* مخفي على الموبايل والتابلت */
+        }
+    }
+
+    /* Optional: keep hover behavior consistent on desktop */
+    .card p.active {
+        flex: 4;
     }
 `;
 
