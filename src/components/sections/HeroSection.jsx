@@ -6,7 +6,7 @@ export default function HeroSection() {
     const [animate, setAnimate] = useState(false);
 
     useEffect(() => {
-        const timer = setTimeout(() => setAnimate(true), 100); // يبدأ بعد 0.1s
+        const timer = setTimeout(() => setAnimate(true), 100); 
         return () => clearTimeout(timer);
     }, []);
 

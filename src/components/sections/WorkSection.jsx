@@ -10,7 +10,7 @@ export default function WorkSection() {
             <div className="flex flex-col gap-8">
                 <h2 className="text-[24px] font-light px-6 py-4 border border-[#F2F2F23F] w-fit">Selected Work</h2>
                 <p className="text-[42px] font-light">
-                    Crafting Meaningful Brands <span className="font-medium">with Strategic Vision</span>
+                    Crafting Meaningful Brands <span className="font-bold">with Strategic Vision</span>
                 </p>
             </div>
 

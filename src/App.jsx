@@ -4,6 +4,8 @@ import MainLayout from './layout/MainLayout'
 import WorkPage from './Pages/WorkPage';
 import { useEffect, useState } from 'react';
 import MainLoader from './components/MainLoader';
+import AboutPage from './Pages/AboutPage';
+import ContactPage from './Pages/ContactPage';
 
 
 export default function App() {
@@ -26,6 +28,8 @@ export default function App() {
                     <Route element={<MainLayout />}>
                         <Route path="/" element={<Homepage />} />
                         <Route path="/work" element={<WorkPage />} />
+                        <Route path="/about" element={<AboutPage />} />
+                        <Route path="/contact" element={<ContactPage />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

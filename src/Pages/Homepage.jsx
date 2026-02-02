@@ -10,46 +10,48 @@ import FlipCards from "../components/UI/FlipCards";
 export default function Homepage() {
     return (
         <main className="w-full">
-            {/* About (Mobile only) */}
-            <div className="block md:hidden mb-8">
-                {" "}
+            {/* About (Mobile + Tablet) */}
+            <div className="block lg:hidden mb-8">
                 <AboutSection />
             </div>
 
-            <div className=" hidden md:block mb-16 md:mb-16">
-                {" "}
-                
+            {/* Hero (Desktop only) */}
+            <div className="hidden lg:block mb-16">
                 <HeroSection />
             </div>
 
-            <div className="hidden md:block  mb-16 md:mb-16">
+            {/* Intro (Desktop only) */}
+            <div className="hidden lg:block mb-16">
                 <IntroSection />
             </div>
 
-            {/* FlipCards (Mobile - Desktop) */}
-            <section className="hidden md:block w-full px-6 mb-8 md:hidden">
+            {/* FlipCards (Mobile + Tablet) */}
+            <section className="block lg:hidden w-full px-6 mb-8">
                 <FlipCards />
             </section>
 
-            {/* Work (Mobile) */}
-            <div className="block md:hidden mb-8">
+            {/* Work (Mobile + Tablet) */}
+            <div className="block lg:hidden mb-8">
                 <WorkSwiper />
             </div>
 
             {/* Work (Desktop) */}
-            <div className="hidden md:block mb-16">
+            <div className="hidden lg:block mb-16">
                 <WorkSection />
             </div>
 
-            <section className=" w-full mt-30 px-16 hidden md:block mb-16">
+            {/* FlipCards (Desktop) */}
+            <section className="hidden lg:block w-full px-16 mb-16">
                 <FlipCards />
             </section>
 
-            <div className=" mb-8">
+            {/* Craft With Me (All screens) */}
+            <div className="mb-8">
                 <CraftWithMeSection />
             </div>
 
-            <div className="block md:hidden mb-8">
+            {/* Contact (Mobile + Tablet) */}
+            <div className="block lg:hidden mb-8">
                 <Contact />
             </div>
         </main>

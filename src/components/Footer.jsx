@@ -21,11 +21,11 @@ export default function Footer() {
     };
 
     const handleLinkClick = (link) => {
-        if (window.innerWidth >= 640) {
+        if (window.innerWidth >= 1024) {
             // Desktop: navigate to page
             navigate(link.path);
         } else {
-            // Mobile: scroll to section
+            // Tablet + Mobile: scroll to section
             const section = document.getElementById(link.targetId);
             if (section) {
                 section.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -34,7 +34,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="w-full bg-white px-6 py-8">
+        <footer className="w-full bg-white px-6 py-10 md:py-12">
             {/* Desktop Layout */}
             <div className="max-w-[1400px] mx-auto hidden sm:flex flex-col gap-6">
                 <div className="flex justify-between items-start gap-4">
@@ -83,8 +83,11 @@ export default function Footer() {
                 </div>
             </div>
 
+            {/* Tablet Layout */}
+            
+
             {/* Mobile Layout */}
-            <div className="sm:hidden flex flex-col gap-6">
+            <div className="sm:hidden md:hidden  flex flex-col gap-6">
                 <div className="flex flex-col items-center gap-4">
                     {/* Logo + Tagline */}
                     <div className="flex items-center gap-4">
@@ -96,7 +99,7 @@ export default function Footer() {
                     </div>
 
                     {/* Links */}
-                    <ul className="flex gap-3 items-center">
+                    <ul className="flex gap-5 items-center">
                         {links.map((link) => (
                             <li key={link.name}>
                                 <button onClick={() => handleLinkClick(link)} className="text-black text-[15px] hover:text-gray-500 transition">

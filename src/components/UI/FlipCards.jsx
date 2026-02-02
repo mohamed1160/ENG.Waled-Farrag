@@ -59,7 +59,7 @@ const StyledWrapper = styled.div`
         flex: 4; 
     }
 
-    /* 📱 Mobile */
+    /*  Mobile */
     @media (max-width: 768px) {
         .card {
             flex-direction: column; 

@@ -7,12 +7,12 @@ export default function WorkSlider() {
         {
             title: "Brand Identity Project",
             description: "A strategic branding project focused on creating a strong and consistent visual identity.",
-            tags: ["Branding",  "Strategy"],
+            tags: ["Branding", "Strategy"],
         },
         {
             title: "UI / UX Case Study",
             description: "Designing intuitive user interfaces with a focus on usability and clean interactions.",
-            tags: ["UI Design", "UX" ],
+            tags: ["UI Design", "UX"],
         },
         {
             title: "Web Design Concept",
@@ -27,21 +27,18 @@ export default function WorkSlider() {
     ];
 
     return (
-        <section id="work" className="w-full bg-black ">
+        <section id="work" className="w-full bg-black">
             <div className="max-w-7xl mx-auto px-4 md:px-10">
                 <Swiper
                     modules={[Autoplay]}
-                    spaceBetween={40}
-                    slidesPerView={1}
+                    slidesPerView={1} 
+                    spaceBetween={0}
                     autoplay={{ delay: 3500, disableOnInteraction: false }}
-                    breakpoints={{
-                        1024: { slidesPerView: 2 },
-                    }}
-                    className="min-h-[520px]">
+                    className="w-full min-h-[520px]">
                     {projects.map((project, index) => (
-                        <SwiperSlide key={index} className="flex justify-center rounded-xl">
-                            <div className="w-full max-w-xl bg-black border  border-[#1f1f1f] rounded-xl  p-6 flex flex-col gap-5">
-                                {/* Image Placeholder */}
+                        <SwiperSlide key={index} className="w-full rounded-xl">
+                            <div className="w-full bg-black border border-[#1f1f1f] rounded-xl p-6 flex flex-col gap-5">
+                                {/* Image */}
                                 <div className="w-full h-[260px] rounded-xl border border-[#2a2a2a]" />
 
                                 {/* Title */}

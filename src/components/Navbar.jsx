@@ -5,9 +5,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
     const location = useLocation();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [activeMobileLink, setActiveMobileLink] = useState("");
 
     const navLinks = [
         { name: "Home", path: "/", targetId: "home" },
@@ -18,15 +20,32 @@ export default function Navbar() {
 
     useEffect(() => {
         const timer = setTimeout(() => setVisible(true), 200);
-        return () => clearTimeout(timer);
+
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            clearTimeout(timer);
+            window.removeEventListener("resize", handleResize);
+        };
     }, []);
 
     const handleMobileScroll = (targetId) => {
         const section = document.getElementById(targetId);
         if (section) {
             section.scrollIntoView({ behavior: "smooth", block: "center" });
+            setActiveMobileLink(targetId); 
         }
         setMenuOpen(false);
+    };
+    
+    const handleTabletClick = (link) => {
+        // Tablet: scroll to section
+        const section = document.getElementById(link.targetId);
+        if (section) {
+            // setActiveMobileLink(targetId); 
+            section.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
     };
 
     return (
@@ -44,18 +63,35 @@ export default function Navbar() {
                     <ul className="flex items-center gap-[35px]">
                         {navLinks.map((link) => {
                             const isActive = location.pathname === link.path;
-                            return (
-                                <li key={link.name} className="relative">
-                                    <Link
-                                        to={link.path}
-                                        className={`text-[1.1rem] p-2.5 transition-colors duration-300
-                                        ${isActive ? "text-white font-semibold" : "text-gray-300"}`}>
-                                        {link.name}
-                                    </Link>
-                                    {/* underline فقط للينك الحالي */}
-                                    {isActive && <span className="absolute left-0 bottom-0 h-[2px] w-full bg-white"></span>}
-                                </li>
-                            );
+
+                            // Tablet: Hide "Home"
+                            if (windowWidth >= 768 && windowWidth < 1024 && link.name === "Home") return null;
+
+                            // Tablet click: scroll, Desktop click: normal Link
+                            if (windowWidth >= 768 && windowWidth < 1024) {
+                                return (
+                                    <li key={link.name} className="relative">
+                                        <button
+                                            onClick={() => handleTabletClick(link)}
+                                            className={`text-[1.1rem] p-2.5 transition-colors duration-300
+                                                ${isActive ? "text-white font-semibold" : "text-gray-300"}`}>
+                                            {link.name}
+                                        </button>
+                                    </li>
+                                );
+                            } else {
+                                return (
+                                    <li key={link.name} className="relative">
+                                        <Link
+                                            to={link.path}
+                                            className={`text-[1.1rem] p-2.5 transition-colors duration-300
+                                                ${isActive ? "text-white font-semibold" : "text-gray-300"}`}>
+                                            {link.name}
+                                        </Link>
+                                        {isActive && <span className="absolute left-0 bottom-0 h-[2px] w-full bg-white"></span>}
+                                    </li>
+                                );
+                            }
                         })}
                     </ul>
                     <ContactBtn />
@@ -74,10 +110,16 @@ export default function Navbar() {
                 {menuOpen && (
                     <div className="absolute top-full left-0 w-full bg-black/90 backdrop-blur-md flex flex-col items-center py-6 gap-6 md:hidden">
                         {navLinks.map((link) => {
-                            if (link.name === "Home") return null; // تجاهل الهوم
+                            if (link.name === "Home") return null; 
                             return (
-                                <button key={link.name} onClick={() => handleMobileScroll(link.targetId)} className="text-lg p-2 text-gray-300 hover:text-white transition">
+                                <button
+                                    key={link.name}
+                                    onClick={() => handleMobileScroll(link.targetId)}
+                                    className={`relative text-lg p-2 transition
+                                        ${activeMobileLink === link.targetId ? "text-white" : "text-gray-300 hover:text-white"}
+                                    `}>
                                     {link.name}
+                                    {activeMobileLink === link.targetId && <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-white"></span>}
                                 </button>
                             );
                         })}
