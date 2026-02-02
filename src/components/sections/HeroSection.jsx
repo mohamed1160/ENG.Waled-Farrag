@@ -6,7 +6,7 @@ export default function HeroSection() {
     const [animate, setAnimate] = useState(false);
 
     useEffect(() => {
-        const timer = setTimeout(() => setAnimate(true), 100); 
+        const timer = setTimeout(() => setAnimate(true), 100);
         return () => clearTimeout(timer);
     }, []);
 
@@ -17,8 +17,8 @@ export default function HeroSection() {
                 src={heroBanner}
                 alt="Hero Banner"
                 className={`absolute inset-0 w-full h-full object-cover object-center z-0
-          transition-transform duration-1000 ease-out
-          md:${animate ? "translate-y-0" : "-translate-y-full"}`}
+                    transition-all duration-1000 ease-out
+                    ${animate ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"}`}
             />
 
             {/* Overlay Content */}
@@ -26,8 +26,8 @@ export default function HeroSection() {
                 {/* Copyright */}
                 <div
                     className={`absolute bottom-4 sm:bottom-6 md:bottom-16
-            transition-transform duration-1000 ease-out
-            md:${animate ? "translate-x-0" : "-translate-x-full"}`}>
+                        transition-all duration-1000 ease-out delay-500
+                        ${animate ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-full"}`}>
                     <img src={copyright} alt="Copyright" className="w-[120px] sm:w-[160px] md:w-[201px] h-auto" />
                 </div>
             </div>

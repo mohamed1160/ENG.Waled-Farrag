@@ -28,7 +28,9 @@ export default function WorkSlider() {
 
     return (
         <section id="work" className="w-full bg-black">
-            <div className="max-w-7xl mx-auto px-4 md:px-10">
+            
+            <div className="max-w-7xl mx-auto px-6 md:px-10">
+                
                 <Swiper
                     modules={[Autoplay]}
                     slidesPerView={1} 

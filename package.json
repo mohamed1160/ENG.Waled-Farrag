@@ -15,6 +15,7 @@
     "flowbite": "^4.0.1",
     "formik": "^2.4.9",
     "gsap": "^3.14.2",
+    "motion": "^12.29.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hot-toast": "^2.6.0",

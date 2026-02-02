@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import MainLoader from './components/MainLoader';
 import AboutPage from './Pages/AboutPage';
 import ContactPage from './Pages/ContactPage';
+import Dashboard from './Pages/Dashboard';
 
 
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
                         <Route path="/work" element={<WorkPage />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/contact" element={<ContactPage />} />
+                        <Route path="/AdminDashboard" element={<Dashboard />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
