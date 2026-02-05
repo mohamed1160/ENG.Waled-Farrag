@@ -1,9 +1,31 @@
 import React, { useState, useEffect, useRef } from "react";
 import Social from "../UI/Social";
+import axios from "axios";
+
+const TOKEN =
+    "7756fb530c1873c03ad43e0f3d644dd6fa8896909002bfcbf77ce9c2d1678c28d5b3087b631bf1f318970b41373ab92190cdf898cc1b611e5a3e0874af8fba69c9806076d6803cad3d4ff54ff6a1025bb96dbc1175c226ab9c7cfe41a039b1d8fc66ec6a74d1f7df1d43e3da79286929910b1a01a432bfe7174847ab0ac03097";
+
 
 export default function Contact() {
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef(null);
+    const [phoneNumber, setPhoneNumber] = useState("201234567890"); 
+
+    useEffect(() => {
+        const fetchPhoneNumber = async () => {
+            try {
+                const res = await axios.get("http://localhost:1337/api/phone", { headers: { Authorization: `Bearer ${TOKEN}` } });
+                const phone = res.data?.data?.phone;
+                setPhoneNumber(phone || "201234567890");
+
+                // console.log(res.data.data.phone);
+            } catch (error) {
+                console.error("Error fetching phone number:", error);
+            }
+        };
+
+        fetchPhoneNumber();
+    }, []);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -47,7 +69,7 @@ export default function Contact() {
             </div>
 
             <a
-                href="#"
+                href={`https://wa.me/${phoneNumber}`}
                 target="_blank"
                 className={`
                     px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-lg text-white bg-[#00000075] border border-white text-sm sm:text-base md:text-lg font-semibold transition-all duration-300 hover:bg-white hover:text-black mb-5 sm:mb-6

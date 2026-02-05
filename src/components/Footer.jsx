@@ -10,6 +10,9 @@ export default function Footer() {
     const [modalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
 
+    const handleLogin = () => {
+        navigate("/AdminDashboard");
+    };
     const links = [
         { name: "Home", path: "/", targetId: "homeSection" },
         { name: "About", path: "/about", targetId: "about" },
@@ -17,15 +20,8 @@ export default function Footer() {
         { name: "Contact", path: "/contact", targetId: "contact" },
     ];
 
-    const handleLogin = (password) => {
-        console.log("Password entered:", password);
-        if (password === "123456") {
-            navigate("/AdminDashboard");
-            setModalOpen(false);
-        } else {
-            alert("Incorrect password. Please try again.");
-        }
-    };
+    
+
 
     const handleLinkClick = (link) => {
         if (window.innerWidth >= 1024) {
@@ -163,9 +159,11 @@ export default function Footer() {
             </motion.div>
 
             {/* Password Modal */}
-            <PasswordModal isOpen={modalOpen} onClose={() => setModalOpen(false)
-                
-            } onLogin={handleLogin} />
+            <PasswordModal
+                isOpen={modalOpen}
+                onClose={() => setModalOpen(false)}
+                onLogin={handleLogin} 
+            />
         </footer>
     );
 }

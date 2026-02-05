@@ -10,6 +10,8 @@ export default function Navbar() {
     const [visible, setVisible] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [activeMobileLink, setActiveMobileLink] = useState("");
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [isVisible, setIsVisible] = useState(true); 
 
     const navLinks = [
         { name: "Home", path: "/", targetId: "home" },
@@ -24,26 +26,43 @@ export default function Navbar() {
         const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener("resize", handleResize);
 
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            const threshold = 10; 
+
+            if (Math.abs(currentScrollY - lastScrollY) > threshold) {
+                if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    setIsVisible(false);
+                } else {
+                    setIsVisible(true);
+                }
+                setLastScrollY(currentScrollY);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
         return () => {
             clearTimeout(timer);
             window.removeEventListener("resize", handleResize);
+            window.removeEventListener("scroll", handleScroll);
         };
-    }, []);
+    }, [lastScrollY]);
 
     const handleMobileScroll = (targetId) => {
         const section = document.getElementById(targetId);
         if (section) {
             section.scrollIntoView({ behavior: "smooth", block: "center" });
-            setActiveMobileLink(targetId); 
+            setActiveMobileLink(targetId);
         }
         setMenuOpen(false);
     };
-    
+
     const handleTabletClick = (link) => {
         // Tablet: scroll to section
         const section = document.getElementById(link.targetId);
         if (section) {
-            // setActiveMobileLink(targetId); 
+            // setActiveMobileLink(targetId);
             section.scrollIntoView({ behavior: "smooth", block: "center" });
         }
     };
@@ -51,7 +70,7 @@ export default function Navbar() {
     return (
         <header
             className={`fixed top-0 left-0 z-50 w-full transition-transform duration-700 ease-out
-        ${visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}`}>
+        ${visible ? (isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0") : "-translate-y-full opacity-0"}`}>
             <nav className="backdrop-blur-md bg-black/20 border-b border-[#F2F2F23F] px-6 md:px-16 py-4 flex items-center justify-between transition-all duration-700">
                 {/* Logo */}
                 <div className="h-10 w-20 md:h-full md:w-20">
@@ -110,7 +129,7 @@ export default function Navbar() {
                 {menuOpen && (
                     <div className="absolute top-full left-0 w-full bg-black/90 backdrop-blur-md flex flex-col items-center py-6 gap-6 md:hidden">
                         {navLinks.map((link) => {
-                            if (link.name === "Home") return null; 
+                            if (link.name === "Home") return null;
                             return (
                                 <button
                                     key={link.name}
