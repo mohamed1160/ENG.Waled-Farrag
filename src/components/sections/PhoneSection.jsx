@@ -10,9 +10,9 @@ const PhoneSection = () => {
 
     const fetchPhone = async () => {
         try {
-            const response = await fetch("http://localhost:1337/api/phone");
+            const response = await fetch("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/phone");
             const data = await response.json();
-            console.log("Phone API response:", data);
+            // console.log("Phone API response:", data);
 
             const number = data?.data?.attributes?.phone || data?.attributes?.phone || "";
             setSavedPhone(number);
@@ -26,7 +26,7 @@ const PhoneSection = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:1337/api/phone", {
+            const response = await fetch("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/phone", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ data: { phone: phone } }),

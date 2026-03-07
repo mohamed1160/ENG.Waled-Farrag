@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const TOKEN =
-    "7756fb530c1873c03ad43e0f3d644dd6fa8896909002bfcbf77ce9c2d1678c28d5b3087b631bf1f318970b41373ab92190cdf898cc1b611e5a3e0874af8fba69c9806076d6803cad3d4ff54ff6a1025bb96dbc1175c226ab9c7cfe41a039b1d8fc66ec6a74d1f7df1d43e3da79286929910b1a01a432bfe7174847ab0ac03097";
+    "8af8ebf69a94129848d0dddcf013defc01429c620b13e99de4b5ee02ac73c93e14c153486d811f90b47df8d3ca3a7a49d78635f5dc2fbb021d0a13b4b3b95e633f85c793f052c493d38a72f991794b351fe0ae4d92936ea747bff09e08dc992a3175f57d246c7c31143ca727297ba7b54139b7bc5352e0029e2c30948d9b4cb5";
 
 export default function WorkSlider() {
     const [projects, setProjects] = useState([]);
@@ -15,11 +15,11 @@ export default function WorkSlider() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const res = await axios.get("http://localhost:1337/api/works?populate=*", { headers: { Authorization: `Bearer ${TOKEN}` } });
+                const res = await axios.get("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/works?populate=*");
                 const data = res.data.data || [];
                 const formattedData = data.map((item) => ({
                     id: item.id,
-                    WorkName: item.WorkName,
+                    workName: item.workName,
                     workDescription: item.workDescription,
                     workTags: item.workTags ? item.workTags.split(",").map((tag) => tag.trim()) : [],
                     workImg: item.workImg,
@@ -42,18 +42,18 @@ export default function WorkSlider() {
             <div className="max-w-7xl mx-auto px-6 md:px-10">
                 <Swiper modules={[Autoplay]} slidesPerView={1} spaceBetween={0} autoplay={{ delay: 3500, disableOnInteraction: false }} className="w-full min-h-[520px]">
                     {projects.map((project, index) => (
-                        console.log("Project:", project),
+                        // console.log("Project:", project),
                         <SwiperSlide key={index} className="w-full rounded-xl">
                             <div className="w-full bg-black border border-[#1f1f1f] rounded-xl p-6 flex flex-col gap-5 cursor-pointer" onClick={() => handleCardClick(project)}>
                                 {/* Image */}
                                 {project.workImg ? (
-                                    <img src={`http://localhost:1337${project.workImg.url}`} alt={project.WorkName} className="w-full h-[260px] rounded-xl border border-[#2a2a2a] object-cover" />
+                                    <img src={`https://passionate-bee-93c3fc2f7c.strapiapp.com${project.workImg.url}`} alt={project.WorkName} className="w-full h-[260px] rounded-xl border border-[#2a2a2a] object-cover" />
                                 ) : (
                                     <div className="w-full h-[260px] rounded-xl border border-[#2a2a2a]" />
                                 )}
 
                                 {/* Title */}
-                                <h3 className="text-white text-2xl font-semibold">{project.WorkName}</h3>
+                                <h3 className="text-white text-2xl font-semibold">{project.workName}</h3>
 
                                 {/* Description */}
                                 <p className="text-[#707070] text-base leading-relaxed">{project.workDescription}</p>

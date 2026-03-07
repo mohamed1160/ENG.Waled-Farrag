@@ -8,8 +8,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules"; 
 
 const TOKEN =
-    "7756fb530c1873c03ad43e0f3d644dd6fa8896909002bfcbf77ce9c2d1678c28d5b3087b631bf1f318970b41373ab92190cdf898cc1b611e5a3e0874af8fba69c9806076d6803cad3d4ff54ff6a1025bb96dbc1175c226ab9c7cfe41a039b1d8fc66ec6a74d1f7df1d43e3da79286929910b1a01a432bfe7174847ab0ac03097"; // استخدم الـ TOKEN المُحدد مباشرة
-
+    "0d88badca1be6a12060996f9d5dc8ebcc447bfc8994ac5fd94eecb01e84944ae162313abee88f5d3f5837835d910a43043a5a13bde8012a6569daa340bcbcd287fe1afd59809ad4111db360778e3f5551526ca7aef5ed4f03455cfa64c1f867c88487e18ddb713b296a1d1a502c1986b300c12d5f5d47cc6fde526d089af86e1";
 export default function SingleProjectPage() {
     const { slug } = useParams(); 
     const [project, setProject] = useState(null);
@@ -19,7 +18,7 @@ export default function SingleProjectPage() {
     useEffect(() => {
         const fetchProject = async () => {
             try {
-                const res = await axios.get("http://localhost:1337/api/all-projects?populate=*", {
+                const res = await axios.get("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/projects?populate=*", {
                     headers: { Authorization: `Bearer ${TOKEN}` },
                 });
                 const data = res.data.data || [];
@@ -65,7 +64,7 @@ export default function SingleProjectPage() {
             <div className="flex flex-col gap-6 sm:gap-8">
                 {project.thumbnail && (
                     <div className="w-full h-[50vh] md:h-screen">
-                        <img src={`http://localhost:1337${project.thumbnail}`} alt={project.title} className="w-full h-full object-cover" />
+                        <img src={`https://passionate-bee-93c3fc2f7c.strapiapp.com${project.thumbnail}`} alt={project.title} className="w-full h-full object-cover" />
                     </div>
                 )}
 
@@ -117,7 +116,7 @@ export default function SingleProjectPage() {
                             className="w-full h-[50vh] sm:h-[60vh] md:h-[80vh]">
                             {project.images.map((imageUrl, index) => (
                                 <SwiperSlide key={index}>
-                                    <img src={`http://localhost:1337${imageUrl}`} alt={`${project.title} - Image ${index + 1}`} className="w-full h-full object-cover" />
+                                    <img src={`https://passionate-bee-93c3fc2f7c.strapiapp.com${imageUrl}`} alt={`${project.title} - Image ${index + 1}`} className="w-full h-full object-cover" />
                                 </SwiperSlide>
                             ))}
                         </Swiper>

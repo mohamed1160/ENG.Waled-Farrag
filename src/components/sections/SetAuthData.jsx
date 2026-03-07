@@ -19,7 +19,7 @@ const UserSection = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:1337/api/auth/local", {
+            const response = await fetch("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/auth/local", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -30,7 +30,7 @@ const UserSection = () => {
                 }),
             });
             const data = await response.json();
-            console.log("Login response:", data);
+            // console.log("Login response:", data);
 
             if (data.jwt) {
                 setJwt(data.jwt);
@@ -49,7 +49,7 @@ const UserSection = () => {
 
     const fetchUser = async (token) => {
         try {
-            const response = await fetch("http://localhost:1337/api/users/me", {
+            const response = await fetch("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/users/me", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -83,7 +83,7 @@ const UserSection = () => {
         if (!confirm) return;
 
         try {
-            const response = await fetch(`http://localhost:1337/api/users/${userId}`, {
+            const response = await fetch(`https://passionate-bee-93c3fc2f7c.strapiapp.com/api/users/${userId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

@@ -3,20 +3,19 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const TOKEN =
-    "5997d4bba22afd7281e1150ce69de812fcfe638a2aa7b43bdaed83147104ec8223f22811c13bad1d8b9843ec1f3f8b7ee57a50dc35f911ce2fcf8ad75d2ec1515cf371d573a53119aa2c91ec3e35a1d9d470eeea5f92849c2bf339a0eb35ebb0ae3b21bf86ec8e23a0c8a5c22be35a3dbf061f171164ef3df4323eddb5f79e22";
-
+    "6e6038e3b4b75899423c07cffeb0a63977771354ff49a6fc8b0eadff70c29b229c17a9751ff12ca00d3d29413d24e39c7bd06db1a105f5f968db6b4f435a3e3d59c9484f786056d46d6cb6484a119ee5b0470a4a7b16a27f23f3f845cb79e1f083616d7c0ef7ebe5b020f8066a1db2206d41f82fa0f9db7bba2e77a0d8c3a73a";
 const ProjectsSection2 = () => {
     const [projects, setProjects] = useState([]);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
-        sector: "",
-        date: "",
-        country: "",
+        // sector: "",
+        // date: "",
+        // country: "",
         image: null, // single image
         type: "",
-        link: "",
-        idNumber: "",
+        // link: "",
+        // idNumber: "",
         tags: "", 
     });
     const [editingProject, setEditingProject] = useState(null);
@@ -27,7 +26,7 @@ const ProjectsSection2 = () => {
 
     const fetchProjects = async () => {
         try {
-            const res = await axios.get("http://localhost:1337/api/selected-works?populate=*&_limit=6", { headers: { Authorization: `Bearer ${TOKEN}` } });
+            const res = await axios.get("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/selected-works?populate=*&_limit=6");
             setProjects(res.data.data || []);
         } catch (error) {
             console.error("Error fetching projects:", error);
@@ -52,7 +51,7 @@ const ProjectsSection2 = () => {
                 const uploadForm = new FormData();
                 uploadForm.append("files", formData.image);
 
-                const uploadRes = await axios.post("http://localhost:1337/api/upload", uploadForm, {
+                const uploadRes = await axios.post("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/upload", uploadForm, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         Authorization: `Bearer ${TOKEN}`,
@@ -67,11 +66,11 @@ const ProjectsSection2 = () => {
                 data: {
                     title: formData.title || "",
                     description: formData.description || "",
-                    sector: formData.sector || "",
-                    date: formData.date || "",
-                    country: formData.country || "",
+                    // sector: formData.sector || "",
+                    // date: formData.date || "",
+                    // country: formData.country || "",
                     type: formData.type || "",
-                    link: formData.link || "",
+                    // link: formData.link || "",
                     idNumber: formData.idNumber || "",
                     tags: formData.tags || "", 
                     ...(imageId && { images: imageId }), 
@@ -81,10 +80,10 @@ const ProjectsSection2 = () => {
             console.log("Project data to send:", projectData);
 
             if (editingProject) {
-                await axios.put(`http://localhost:1337/api/selected-works/${editingProject.documentId}`, projectData, { headers: { Authorization: `Bearer ${TOKEN}` } });
+                await axios.put(`https://passionate-bee-93c3fc2f7c.strapiapp.com/api/selected-works/${editingProject.documentId}`, projectData, { headers: { Authorization: `Bearer ${TOKEN}` } });
                 alert("Project updated successfully!");
             } else {
-                await axios.post("http://localhost:1337/api/selected-works", projectData, { headers: { Authorization: `Bearer ${TOKEN}` } });
+                await axios.post("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/selected-works", projectData, { headers: { Authorization: `Bearer ${TOKEN}` } });
                 alert("Project added successfully!");
             }
 
@@ -92,12 +91,12 @@ const ProjectsSection2 = () => {
             setFormData({
                 title: "",
                 description: "",
-                sector: "",
-                date: "",
-                country: "",
+                // sector: "",
+                // date: "",
+                // country: "",
                 image: null,
                 type: "",
-                link: "",
+                // link: "",
                 idNumber: "",
                 tags: "", // إعادة تعيين tags
             });
@@ -114,12 +113,12 @@ const ProjectsSection2 = () => {
         setFormData({
             title: project.title || "",
             description: project.description || "",
-            sector: project.sector || "",
-            date: project.date || "",
-            country: project.country || "",
+            // sector: project.sector || "",
+            // date: project.date || "",
+            // country: project.country || "",
             image: null, 
             type: project.type || "",
-            link: project.link || "",
+            // link: project.link || "",
             idNumber: project.idNumber || "",
             tags: project.tags || "", 
         });
@@ -128,7 +127,7 @@ const ProjectsSection2 = () => {
     const handleDelete = async (documentId) => {
         if (!confirm("Are you sure you want to delete this project?")) return;
         try {
-            await axios.delete(`http://localhost:1337/api/selected-works/${documentId}`, {
+            await axios.delete(`https://passionate-bee-93c3fc2f7c.strapiapp.com/api/selected-works/${documentId}`, {
                 headers: { Authorization: `Bearer ${TOKEN}` },
             });
             setProjects(projects.filter((p) => p.documentId !== documentId));
@@ -162,29 +161,29 @@ const ProjectsSection2 = () => {
                         required
                         className="w-full p-3 border border-gray-300 rounded-lg bg-white/10 text-white placeholder-gray-400"
                     />
-                    <input
+                    {/* <input
                         type="text"
                         name="sector"
                         placeholder="Sector"
                         value={formData.sector}
                         onChange={handleInputChange}
                         className="w-full p-3 border border-gray-300 rounded-lg bg-white/10 text-white placeholder-gray-400"
-                    />
-                    <input
+                    /> */}
+                    {/* <input
                         type="date"
                         name="date"
                         value={formData.date}
                         onChange={handleInputChange}
                         className="w-full p-3 border border-gray-300 rounded-lg bg-white/10 text-white placeholder-gray-400"
-                    />
-                    <input
+                    /> */}
+                    {/* <input
                         type="text"
                         name="country"
                         placeholder="Country"
                         value={formData.country}
                         onChange={handleInputChange}
                         className="w-full p-3 border border-gray-300 rounded-lg bg-white/10 text-white placeholder-gray-400"
-                    />
+                    /> */}
                     <input
                         type="file"
                         name="image"
@@ -200,14 +199,14 @@ const ProjectsSection2 = () => {
                         required
                         className="w-full p-3 border border-gray-300 rounded-lg bg-white/10 text-white placeholder-gray-400"
                     />
-                    <input
+                    {/* <input
                         type="url"
                         name="link"
                         placeholder="Link"
                         value={formData.link}
                         onChange={handleInputChange}
                         className="w-full p-3 border border-gray-300 rounded-lg bg-white/10 text-white placeholder-gray-400"
-                    />
+                    /> */}
                     <input
                         type="text"
                         name="idNumber"
@@ -236,20 +235,20 @@ const ProjectsSection2 = () => {
                         <div key={project.id} className="bg-white/20 p-4 rounded-lg shadow-md hover:bg-white/30 transition duration-300">
                             <h3 className="text-xl font-semibold">{project.title}</h3>
                             <p className="text-gray-300">{project.description}</p>
-                            <p className="text-gray-300">Sector: {project.sector}</p>
-                            <p className="text-gray-300">Date: {project.date}</p>
-                            <p className="text-gray-300">Country: {project.country}</p>
+                            {/* <p className="text-gray-300">Sector: {project.sector}</p> */}
+                            {/* <p className="text-gray-300">Date: {project.date}</p> */}
+                            {/* <p className="text-gray-300">Country: {project.country}</p> */}
                             <p className="text-gray-300">Type: {project.type}</p>
                             <p className="text-gray-300">ID Number: {project.idNumber}</p>
                             <p className="text-gray-300">Tags: {project.tags}</p>
-                            <p className="text-gray-300">
+                            {/* <p className="text-gray-300">
                                 Link:{" "}
                                 <a href={project.link} className="text-blue-400 hover:text-blue-300">
                                     {project.link}
                                 </a>
-                            </p>
+                            </p> */}
                             {project.images?.formats.thumbnail.url && (
-                                <img src={`http://localhost:1337${project.images.formats.thumbnail.url}`} alt="Project" className="w-16 h-16 object-cover rounded mt-2" />
+                                <img src={`${project.images.formats.thumbnail.url}`} alt="Project" className="w-16 h-16 object-cover rounded mt-2" />
                             )}
                             <div className="mt-4 flex space-x-2">
                                 <button onClick={() => handleEdit(project)} className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600">

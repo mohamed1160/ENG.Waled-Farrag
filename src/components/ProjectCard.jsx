@@ -3,7 +3,7 @@ export default function ProjectCard({ project, minHeight, tagsCols = 3 }) {
         3: "grid-cols-3",
         7: "grid-cols-7",
     };
-    console.log("Project in ProjectCard:", project);
+    // console.log("Project in ProjectCard:", project);
 
     // Ensure tags is an array; if it's a string, split by comma and trim
     let tags = [];
@@ -18,7 +18,7 @@ export default function ProjectCard({ project, minHeight, tagsCols = 3 }) {
             {/* Display image if available, else fallback to the colored div */}
             {project.images ? (
                 <img
-                    src={`http://localhost:1337${project.images.url}`}
+                    src={`${project.images.url}`}
                     alt={project.title}
                     className="w-full rounded-[8px] object-cover hover:scale-105 transition-transform duration-300"
                     style={{ minHeight }}

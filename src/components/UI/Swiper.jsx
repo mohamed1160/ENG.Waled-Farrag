@@ -17,7 +17,7 @@ export default function App() {
     useEffect(() => {
         const fetchClients = async () => {
             try {
-                const res = await fetch("http://localhost:1337/api/clients?populate=*");
+                const res = await fetch("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/clients?populate=*");
                 const data = await res.json();
                 if (Array.isArray(data)) {
                     setClients(data);
@@ -55,7 +55,7 @@ export default function App() {
                       return (
                           <SwiperSlide key={client.id}>
                               {logoUrl ? (
-                                  <img src={`http://localhost:1337${logoUrl}`} alt={client.logo?.alternativeText || client.name || "Client Logo"} className="h-full w-full object-contain" />
+                                  <img src={`${logoUrl}`} alt={client.logo?.alternativeText || client.name || "Client Logo"} className="h-full w-full object-contain" />
                               ) : (
                                   <div className="h-full w-full flex items-center justify-center bg-gray-200">No Logo</div>
                               )}

@@ -3,8 +3,7 @@ import axios from "axios";
 import ProjectCard from "../ProjectCard";
 
 const TOKEN =
-    "7756fb530c1873c03ad43e0f3d644dd6fa8896909002bfcbf77ce9c2d1678c28d5b3087b631bf1f318970b41373ab92190cdf898cc1b611e5a3e0874af8fba69c9806076d6803cad3d4ff54ff6a1025bb96dbc1175c226ab9c7cfe41a039b1d8fc66ec6a74d1f7df1d43e3da79286929910b1a01a432bfe7174847ab0ac03097";
-
+    "6e6038e3b4b75899423c07cffeb0a63977771354ff49a6fc8b0eadff70c29b229c17a9751ff12ca00d3d29413d24e39c7bd06db1a105f5f968db6b4f435a3e3d59c9484f786056d46d6cb6484a119ee5b0470a4a7b16a27f23f3f845cb79e1f083616d7c0ef7ebe5b020f8066a1db2206d41f82fa0f9db7bba2e77a0d8c3a73a";
 export default function WorkSection() {
     const [projects, setProjects] = useState([]);
     
@@ -12,7 +11,7 @@ export default function WorkSection() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const res = await axios.get("http://localhost:1337/api/selected-works?populate=*", { headers: { Authorization: `Bearer ${TOKEN}` } });
+                const res = await axios.get("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/selected-works?populate=*");
                 const data = res.data.data || [];
                 const sortedData = data.sort((a, b) => (a.idNumber || 0) - (b.idNumber || 0));
                 setProjects(sortedData);

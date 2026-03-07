@@ -21,7 +21,7 @@ export default function PasswordModal({ isOpen, onClose, onLogin }) {
                     validationSchema={schema}
                     onSubmit={async (values, { setSubmitting }) => {
                         try {
-                            const res = await axios.post("http://localhost:1337/api/auth/local", {
+                            const res = await axios.post("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/auth/local", {
                                 identifier: values.username,
                                 password: values.password,
                             });

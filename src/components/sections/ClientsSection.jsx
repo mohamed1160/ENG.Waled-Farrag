@@ -2,8 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const TOKEN =
-    "5997d4bba22afd7281e1150ce69de812fcfe638a2aa7b43bdaed83147104ec8223f22811c13bad1d8b9843ec1f3f8b7ee57a50dc35f911ce2fcf8ad75d2ec1515cf371d573a53119aa2c91ec3e35a1d9d470eeea5f92849c2bf339a0eb35ebb0ae3b21bf86ec8e23a0c8a5c22be35a3dbf061f171164ef3df4323eddb5f79e22";
-
+    "3c8062408ab946ef437a22a9859a4cd4b8f809b541601c78c60158fd56211b9e897e5d040f6520bef1d5bd5ca2de21f3f467b9bbe53210dde702724bb61dec897a049ad495ecf370a4075100155eebaa0e008dd213edf4de2189511f74bcfcd3a2d772ff920f4adfb14549fbeb63663b810f4385a899ee0279c13774fa7ae422";
 function ClientsSection() {
     const [name, setName] = useState("");
     const [file, setFile] = useState(null);
@@ -15,11 +14,7 @@ function ClientsSection() {
     useEffect(() => {
         const fetchClients = async () => {
             try {
-                const res = await axios.get("http://localhost:1337/api/clients?populate=*", {
-                    headers: {
-                        Authorization: `Bearer ${TOKEN}`,
-                    },
-                });
+                const res = await axios.get("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/clients?populate=*");
                 // console.log("Fetched clients data:", res.data);
                 setClients(res.data.data); 
             } catch (error) {
@@ -38,7 +33,7 @@ function ClientsSection() {
                 const formData = new FormData();
                 formData.append("files", file);
 
-                const uploadRes = await axios.post("http://localhost:1337/api/upload", formData, {
+                const uploadRes = await axios.post("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/upload", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         Authorization: `Bearer ${TOKEN}`,
@@ -58,7 +53,7 @@ function ClientsSection() {
                 clientData.data.logo = imageId; 
             }
 
-            const clientRes = await axios.post("http://localhost:1337/api/clients", clientData, {
+            const clientRes = await axios.post("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/clients", clientData, {
                 headers: {
                     Authorization: `Bearer ${TOKEN}`,
                 },
@@ -66,7 +61,7 @@ function ClientsSection() {
 
             console.log("Client saved:", clientRes.data);
             alert("Client saved successfully!");
-            const fetchRes = await axios.get("http://localhost:1337/api/clients?populate=*", {
+            const fetchRes = await axios.get("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/clients?populate=*", {
                 headers: {
                     Authorization: `Bearer ${TOKEN}`,
                 },
@@ -83,7 +78,7 @@ function ClientsSection() {
     const handleDelete = async (id) => {
         if (!confirm("Are you sure you want to delete this client?")) return;
         try {
-            await axios.delete(`http://localhost:1337/api/clients/${id}`, {
+            await axios.delete(`https://passionate-bee-93c3fc2f7c.strapiapp.com/api/clients/${id}`, {
                 headers: {
                     Authorization: `Bearer ${TOKEN}`,
                 },
@@ -109,7 +104,7 @@ function ClientsSection() {
                 const formData = new FormData();
                 formData.append("files", editFile);
 
-                const uploadRes = await axios.post("http://localhost:1337/api/upload", formData, {
+                const uploadRes = await axios.post("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/upload", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         Authorization: `Bearer ${TOKEN}`,
@@ -129,7 +124,7 @@ function ClientsSection() {
             }
 
             const updateRes = await axios.put(
-                `http://localhost:1337/api/clients/${editingClient.documentId}`,
+                `https://passionate-bee-93c3fc2f7c.strapiapp.com/api/clients/${editingClient.documentId}`,
                 updateData,
                 {
                     headers: {
@@ -140,7 +135,7 @@ function ClientsSection() {
 
             console.log("Client updated:", updateRes.data);
             alert("Client updated successfully!");
-            const fetchRes = await axios.get("http://localhost:1337/api/clients?populate=*", {
+            const fetchRes = await axios.get("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/clients?populate=*", {
                 headers: {
                     Authorization: `Bearer ${TOKEN}`,
                 },
@@ -193,9 +188,9 @@ function ClientsSection() {
                     <p className="text-center text-gray-400">No clients found.</p>
                 ) : (
                     clients.map((client) => {
-                        console.log("Rendering client:", client);
-                        console.log("Client name:", client.name);
-                        console.log("Client logo:", client.logo);
+                        // console.log("Rendering client:", client);
+                        // console.log("Client name:", client.name);
+                        // console.log("Client logo:", client.logo);
                         return (
                             <div key={client.id} className="bg-white/20 p-4 rounded-lg shadow-lg backdrop-blur-sm flex items-center justify-between">
                                 {editingClient?.id === client.id ? (
@@ -225,7 +220,7 @@ function ClientsSection() {
                                     <>
                                         <div className="flex items-center space-x-4">
                                             {client.logo?.url ? (
-                                                <img src={`http://localhost:1337${client.logo.url}`} alt={client.name || "Client Logo"} className="w-12 h-12 rounded-full object-cover" />
+                                                <img src={`${client.logo.url}`} alt={client.name || "Client Logo"} className="w-12 h-12 rounded-full object-cover" />
                                             ) : (
                                                 <div className="w-12 h-12 rounded-full bg-gray-500 flex items-center justify-center text-white text-sm">No Logo</div>
                                             )}

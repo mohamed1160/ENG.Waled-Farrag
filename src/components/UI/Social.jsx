@@ -8,7 +8,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 const TOKEN =
-    "7756fb530c1873c03ad43e0f3d644dd6fa8896909002bfcbf77ce9c2d1678c28d5b3087b631bf1f318970b41373ab92190cdf898cc1b611e5a3e0874af8fba69c9806076d6803cad3d4ff54ff6a1025bb96dbc1175c226ab9c7cfe41a039b1d8fc66ec6a74d1f7df1d43e3da79286929910b1a01a432bfe7174847ab0ac03097";
+    "e168cc232c6102f95d724baaf7a93b4fabc54caa078080c4f6c7fdbb4db56579ead53ed96e0890b13a23b1aa425f819a472b04ac6ee0b01d616eebe0b40c2216dfc5de272f210f47fd80b77002a60bb94fef86b60a092c5e83969d90153c15335ed563273e9a9cef2bedd97ff28601e5dc87e4c71b0980d4292b4629e43ff43d";
 
 const Social = () => {
     const [phoneNumber, setPhoneNumber] = useState("201234567890"); 
@@ -16,7 +16,7 @@ const Social = () => {
     useEffect(() => {
         const fetchPhoneNumber = async () => {
             try {
-                const res = await axios.get("http://localhost:1337/api/phone", { headers: { Authorization: `Bearer ${TOKEN}` } });
+                const res = await axios.get("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/phone");
                 const phone = res.data?.data?.phone;
                 setPhoneNumber(phone || "201234567890");
 

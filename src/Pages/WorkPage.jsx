@@ -6,8 +6,7 @@ import Swiper from "../components/UI/Swiper";
 import StoriesSection from "../components/sections/StoriesSection";
 
 const TOKEN =
-    "7756fb530c1873c03ad43e0f3d644dd6fa8896909002bfcbf77ce9c2d1678c28d5b3087b631bf1f318970b41373ab92190cdf898cc1b611e5a3e0874af8fba69c9806076d6803cad3d4ff54ff6a1025bb96dbc1175c226ab9c7cfe41a039b1d8fc66ec6a74d1f7df1d43e3da79286929910b1a01a432bfe7174847ab0ac03097"; // استخدم الـ TOKEN المُحدد مباشرة
-
+    "0d88badca1be6a12060996f9d5dc8ebcc447bfc8994ac5fd94eecb01e84944ae162313abee88f5d3f5837835d910a43043a5a13bde8012a6569daa340bcbcd287fe1afd59809ad4111db360778e3f5551526ca7aef5ed4f03455cfa64c1f867c88487e18ddb713b296a1d1a502c1986b300c12d5f5d47cc6fde526d089af86e1";
 export default function WorkPage() {
     const [projects, setProjects] = useState([]);
     const [filter, setFilter] = useState("All");
@@ -19,9 +18,8 @@ export default function WorkPage() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const res = await axios.get("http://localhost:1337/api/all-projects?populate=*", {
-                    headers: { Authorization: `Bearer ${TOKEN}` },
-                });
+                const res = await axios.get("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/projects?populate=*"
+                );
                 const data = res.data.data || [];
                 const formattedData = data.map((item) => ({
                     id: item.id,
@@ -95,7 +93,7 @@ export default function WorkPage() {
                                 <div key={project.id} className={`w-full text-white cursor-pointer ${index % 2 !== 0 ? "mt-0 md:mt-32" : ""}`} onClick={() => handleProjectClick(project)}>
                                     {project.thumbnail ? (
                                         <img
-                                            src={`http://localhost:1337${project.thumbnail}`}
+                                            src={`${project.thumbnail}`}
                                             alt={project.title}
                                             className="bg-[var(--secondary-2)] rounded-[8px] w-full h-[60vh] md:h-[80vh] object-cover"
                                         />

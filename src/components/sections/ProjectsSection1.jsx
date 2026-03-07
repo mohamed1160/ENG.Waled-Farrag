@@ -3,8 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const TOKEN =
-    "7756fb530c1873c03ad43e0f3d644dd6fa8896909002bfcbf77ce9c2d1678c28d5b3087b631bf1f318970b41373ab92190cdf898cc1b611e5a3e0874af8fba69c9806076d6803cad3d4ff54ff6a1025bb96dbc1175c226ab9c7cfe41a039b1d8fc66ec6a74d1f7df1d43e3da79286929910b1a01a432bfe7174847ab0ac03097";
-
+    "0d88badca1be6a12060996f9d5dc8ebcc447bfc8994ac5fd94eecb01e84944ae162313abee88f5d3f5837835d910a43043a5a13bde8012a6569daa340bcbcd287fe1afd59809ad4111db360778e3f5551526ca7aef5ed4f03455cfa64c1f867c88487e18ddb713b296a1d1a502c1986b300c12d5f5d47cc6fde526d089af86e1";
 const ProjectsSection1 = () => {
     const [projects, setProjects] = useState([]);
     const [formData, setFormData] = useState({
@@ -27,9 +26,8 @@ const ProjectsSection1 = () => {
 
     const fetchProjects = async () => {
         try {
-            const res = await axios.get("http://localhost:1337/api/all-projects?populate=*", {
-                headers: { Authorization: `Bearer ${TOKEN}` },
-            });
+            const res = await axios.get("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/projects?populate=*"
+                );
             setProjects(res.data.data || []);
         } catch (error) {
             console.error("Error fetching projects:", error);
@@ -56,7 +54,7 @@ const ProjectsSection1 = () => {
                 const uploadForm = new FormData();
                 formData.images.forEach((img) => uploadForm.append("files", img));
 
-                const uploadRes = await axios.post("http://localhost:1337/api/upload", uploadForm, {
+                const uploadRes = await axios.post("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/upload", uploadForm, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         Authorization: `Bearer ${TOKEN}`,
@@ -72,7 +70,7 @@ const ProjectsSection1 = () => {
                 const uploadForm = new FormData();
                 uploadForm.append("files", formData.thumbnail);
 
-                const uploadRes = await axios.post("http://localhost:1337/api/upload", uploadForm, {
+                const uploadRes = await axios.post("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/upload", uploadForm, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                         Authorization: `Bearer ${TOKEN}`,
@@ -101,10 +99,10 @@ const ProjectsSection1 = () => {
             console.log("Project data to send:", projectData);
 
             if (editingProject) {
-                await axios.put(`http://localhost:1337/api/all-projects/${editingProject.documentId}`, projectData, { headers: { Authorization: `Bearer ${TOKEN}` } });
+                await axios.put(`https://passionate-bee-93c3fc2f7c.strapiapp.com/api/projects/${editingProject.documentId}`, projectData, { headers: { Authorization: `Bearer ${TOKEN}` } });
                 alert("Project updated successfully!");
             } else {
-                await axios.post("http://localhost:1337/api/all-projects", projectData, {
+                await axios.post("https://passionate-bee-93c3fc2f7c.strapiapp.com/api/projects", projectData, {
                     headers: { Authorization: `Bearer ${TOKEN}` },
                 });
                 alert("Project added successfully!");
@@ -151,7 +149,7 @@ const ProjectsSection1 = () => {
     const handleDelete = async (documentId) => {
         if (!confirm("Are you sure you want to delete this project?")) return;
         try {
-            await axios.delete(`http://localhost:1337/api/all-projects/${documentId}`, {
+            await axios.delete(`https://passionate-bee-93c3fc2f7c.strapiapp.com/api/all-projects/${documentId}`, {
                 headers: { Authorization: `Bearer ${TOKEN}` },
             });
             setProjects(projects.filter((p) => p.documentId !== documentId));
@@ -275,11 +273,11 @@ const ProjectsSection1 = () => {
                             </a>
                         </p>
                         {project.thumbnail && (
-                            <img src={`http://localhost:1337${project.thumbnail.formats?.thumbnail?.url || project.thumbnail.url}`} alt="Thumbnail" className="w-16 h-16 object-cover rounded mt-2" />
+                            <img src={`${project.thumbnail.formats?.thumbnail?.url || project.thumbnail.url}`} alt="Thumbnail" className="w-16 h-16 object-cover rounded mt-2" />
                         )}
                         {project.images?.length > 0 &&
                             project.images.map((img, idx) => (
-                                <img key={idx} src={`http://localhost:1337${img.formats?.thumbnail?.url || img.url}`} alt="Project" className="w-16 h-16 object-cover rounded mt-2" />
+                                <img key={idx} src={`${img.formats?.thumbnail?.url || img.url}`} alt="Project" className="w-16 h-16 object-cover rounded mt-2" />
                             ))}
                         <div className="mt-4 flex space-x-2">
                             <button onClick={() => handleEdit(project)} className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600">
