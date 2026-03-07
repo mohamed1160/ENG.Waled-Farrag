@@ -47,7 +47,7 @@ export default function WorkSlider() {
                             <div className="w-full bg-black border border-[#1f1f1f] rounded-xl p-6 flex flex-col gap-5 cursor-pointer" onClick={() => handleCardClick(project)}>
                                 {/* Image */}
                                 {project.workImg ? (
-                                    <img src={`https://passionate-bee-93c3fc2f7c.strapiapp.com${project.workImg.url}`} alt={project.WorkName} className="w-full h-[260px] rounded-xl border border-[#2a2a2a] object-cover" />
+                                    <img src={`${project.workImg.url}`} alt={project.WorkName} className="w-full h-[260px] rounded-xl border border-[#2a2a2a] object-cover" />
                                 ) : (
                                     <div className="w-full h-[260px] rounded-xl border border-[#2a2a2a]" />
                                 )}
